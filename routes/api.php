@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('register', 'JWTAuthController@register')->name('register');
+    Route::post('login', 'JWTAuthController@login')->name('login');
+    Route::post('logout', 'JWTAuthController@logout')->name('logout');
+    Route::post('refresh', 'JWTAuthController@refresh')->name('refresh_token');
+});

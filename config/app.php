@@ -1,5 +1,9 @@
 <?php
 
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTFactory;
+use Tymon\JWTAuth\Providers\LaravelServiceProvider;
+
 return [
 
     /*
@@ -165,6 +169,7 @@ return [
         /*
          * Package Service Providers...
          */
+        LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -226,7 +231,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'JWTAuth' => JWTAuth::class,
+        'JWTFactory' => JWTFactory::class
     ],
 
 ];
