@@ -14,5 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return redirect()->route('home');
+})->name('index');
+
+Route::get('/home', function () {
     return view('home');
-});
+})->name('home');
+
+Route::get('/login', function () {
+    if (auth()->check()) {
+        return redirect()->route('/');
+    } else {
+        return view('login');
+    }
+})->name('login');
+
+Route::get('/register', function () {
+    if (auth()->check()) {
+        return redirect()->route('/');
+    } else {
+        return view('register');
+    }
+})->name('register');
