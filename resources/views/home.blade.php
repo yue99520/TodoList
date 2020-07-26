@@ -2,14 +2,18 @@
 
 @section('title', 'Home')
 
-@section('header')
-    @include('layouts.header')
+@section('layout_header')
+    @if(auth()->check())
+        @include('layouts.headers.user')
+    @else
+        @include('layouts.headers.guest')
+    @endif
 @endsection
 
-@section('sidebar')
+@section('layout_sidebar')
 
 @endsection
 
-@section('content')
+@section('layout_content')
 
 @endsection

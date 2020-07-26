@@ -6,10 +6,10 @@
         <title>@yield('title') | {{ config('app.name') }}</title>
     </head>
     <body>
-        @yield('header')
+        @yield('layout_header')
         <div class="ui container">
-            @yield('sidebar')
-            @yield('content')
+            @yield('layout_sidebar')
+            @yield('layout_content')
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
