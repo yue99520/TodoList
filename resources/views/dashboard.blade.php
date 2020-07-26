@@ -3,11 +3,7 @@
 @section('title', 'Home')
 
 @section('layout_header')
-    @if(auth()->check())
-        @include('layouts.headers.user')
-    @else
-        @include('layouts.headers.guest')
-    @endif
+    @include('layouts.headers.user')
 @endsection
 
 @section('layout_sidebar')

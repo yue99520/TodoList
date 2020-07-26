@@ -14,25 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('home');
+    return auth()->check() ? redirect()->route('dashboard') : redirect()->route('login');
 })->name('index');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
 
 Route::get('/login', function () {
-    if (auth()->check()) {
-        return redirect()->route('/');
-    } else {
-        return view('login');
-    }
+    return auth()->check() ? redirect()->route('/') : view('login');
 })->name('login');
 
 Route::get('/register', function () {
-    if (auth()->check()) {
-        return redirect()->route('/');
-    } else {
-        return view('register');
-    }
+    return auth()->check() ? redirect()->route('/') : view('register');
 })->name('register');
