@@ -25,8 +25,8 @@ Route::group([
 
 ], function ($router) {
 
-    Route::post('register', 'JWTAuthController@register')->name('register');
-    Route::post('login', 'JWTAuthController@login')->name('login');
-    Route::post('logout', 'JWTAuthController@logout')->name('logout');
-    Route::post('refresh', 'JWTAuthController@refresh')->name('refresh_token');
+    Route::post('register', 'Api\JWTAuthController@register')->name('register');
+    Route::post('login', 'Api\JWTAuthController@login')->name('login');
+    Route::post('logout', 'Api\JWTAuthController@logout')->name('logout');
+    Route::post('refresh', 'Api\JWTAuthController@refresh')->name('refresh_token');
 });
