@@ -19,7 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => 'auth:api',
+    'except' => ['login', 'register'],
     'prefix' => 'auth'
 
 ], function ($router) {
