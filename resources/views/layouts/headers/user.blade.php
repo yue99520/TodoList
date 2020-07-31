@@ -9,11 +9,13 @@
     </a>
     <a class="ui small right item">
         <i class="large bell outline icon"></i>
-        <div class="ui left pointing tiny red label">{{ //todo get notification number }}</div>
+        <div class="ui left pointing tiny red label">15</div>
+{{--        todo get notification number--}}
     </a>
     <div class="ui dropdown item">
         <i class="big user circle icon"></i>
-        {{ auth()->user()->name }}
+{{--        {{ auth()->user()->name }}--}}
+        Test User Name
         <i class="dropdown icon"></i>
         <div class="menu">
             <a class="item">
