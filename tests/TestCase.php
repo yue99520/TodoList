@@ -12,6 +12,11 @@ abstract class TestCase extends BaseTestCase
 
     protected Generator $faker;
 
+    protected function initDatabase()
+    {
+
+    }
+
     protected function setUp(): void
     {
         parent::setUp();
