@@ -1,5 +1,6 @@
 <?php
 
+use App\Group;
 use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -26,5 +27,8 @@ class UserSeeder extends Seeder
         $superUser->github = 'https://github.com/yue99520';
         $superUser->instagram = 'https://www.instagram.com/dy99520/';
         $superUser->save();
+
+        $group = Group::query()->where('title', 'Developer')->firstOrFail();
+        $group->users()->save($superUser);
     }
 }

@@ -28,3 +28,11 @@ Route::group(['prefix' => 'auth'], function ($router) {
         Route::post('refresh', 'Api\JWTAuthController@refresh')->name('refresh_token');
     });
 });
+
+Route::group(['prefix' => 'user'], function ($router) {
+    Route::get('{id}', 'Api\UserController@get')->name('user.get');
+});
+
+Route::group(['prefix' => 'group'], function ($router) {
+    Route::get('{id}', 'Api\GroupController@get')->name('group.get');
+});
