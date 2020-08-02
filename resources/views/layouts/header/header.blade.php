@@ -23,12 +23,6 @@
                 <i class="dropdown icon"></i>
                 @include('layouts.header.user_menu')
             </div>
-        @else
-            <a class="right item">
-                <i class="sign-in blue icon"></i>
-                登入
-            </a>
-            <a class="item">註冊</a>
         @endif
     </div>
 </div>
