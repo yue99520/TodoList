@@ -34,8 +34,8 @@ class Project extends Model
         }
     }
 
-    function attributes()
+    function columns()
     {
-        return $this->hasMany(Attribute::class);
+        return $this->hasMany(Column::class);
     }
 }

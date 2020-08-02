@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Column;
+use App\Grid;
 use App\Project;
 use App\Task;
 use Tests\TestCase;
@@ -19,32 +20,36 @@ class TaskTest extends TestCase
         $this->assertEquals($project->id, $task->project_id);
     }
 
-    function testTaskHasColumns()
+    function testTaskHasRows()
     {
-        $task = factory(Task::class)->create();
+        $project = factory(Project::class)->create();
+        $task = factory(Task::class)->create([
+            'project_id' => $project->id,
+        ]);
+        $column = factory(Column::class)->create([
+            'project_id' => $project->id,
+        ]);
 
-        $column = new Column();
-        $column->type = 'boolean';
-        $column->boolean = false;
-
-        $task->columns()->save($column);
-
-        $this->assertEquals($task->id, $column->task_id);
+        $grid = $task->setGrid($column, 'hello');
+        $this->assertEquals($task->id, $grid->task_id);
+        $this->assertEquals($column->id, $grid->column_id);
     }
 
     function testTaskDelete()
     {
-        $task = factory(Task::class)->create();
+        $project = factory(Project::class)->create();
+        $task = factory(Task::class)->create([
+            'project_id' => $project->id,
+        ]);
+        $column = factory(Column::class)->create([
+            'project_id' => $project->id,
+        ]);
 
-        $column = new Column();
-        $column->type = 'boolean';
-        $column->boolean = false;
-
-        $task->columns()->save($column);
+        $grid = $task->setGrid($column, 'hello');
 
         $task->delete();
 
         $this->assertFalse(Task::query()->where('id', $task->id)->exists());
-        $this->assertFalse(Column::query()->where('id', $column->id)->exists());
+        $this->assertFalse(Grid::query()->where('id', $grid->id)->exists());
     }
 }

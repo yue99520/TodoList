@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColumnTable extends Migration
+class CreateColumnsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,12 +16,8 @@ class CreateColumnTable extends Migration
         Schema::create('columns', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-
-            //type options
-            $table->boolean('boolean')->nullable();
-            $table->string('text')->nullable();
-            $table->timestamp('time')->nullable();
-            $table->float('number')->nullable();
+            $table->string('title');
+            //type: boolean, text, time, number
         });
     }
 
@@ -32,6 +28,6 @@ class CreateColumnTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('columnables');
+        Schema::dropIfExists('columns');
     }
 }

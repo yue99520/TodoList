@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
@@ -11,26 +12,29 @@ class Task extends Model
         parent::boot();
 
         static::deleting(function ($task) {
-            $columns = $task->columns()->get();
+            $grids = $task->grids()->get();
 
-            $ids = $columns->transform(function ($item, $key) {
+            $ids = $grids->transform(function ($item, $key) {
                 return $item->id;
             });
 
-            Column::query()->whereIn('id', $ids)->delete();
+            Grid::query()->whereIn('id', $ids)->delete();
         });
     }
 
 
-    function addColumn(Column $column)
+    function setGrid(Column $column, $value)
     {
-        $column->task_id = $this->id;
-        $column->save();
+        $grid = new Grid();
+        $grid->content = $value;
+        $grid->column_id = $column->id;
+        $this->grids()->save($grid);
+        return $grid;
     }
 
-    function columns()
+    function grids()
     {
-        return $this->hasMany(Column::class);
+        return $this->hasMany(Grid::class);
     }
 
     function project()
