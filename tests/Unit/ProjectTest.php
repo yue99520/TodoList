@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Column;
 use App\Project;
 use App\Task;
 use App\User;
@@ -32,6 +33,18 @@ class ProjectTest extends TestCase
         ]);
 
         $this->assertCount($random, $project->tasks);
+    }
+
+    function testProjectHasColumns()
+    {
+        $random = random_int(1, 10);
+
+        $project = factory(Project::class)->create();
+        factory(Column::class, $random)->create([
+            'project_id' => $project->id,
+        ]);
+
+        $this->assertCount($random, $project->columns);
     }
 
     function testProjectDelete()
